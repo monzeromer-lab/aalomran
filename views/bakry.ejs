@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bakery</title>
+
+    <!-- Bootstrap -->
+    <link href="/web/public/css/bootstrap-4.4.1.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style type="text/css">
+    th{
+	width: 5px;
+    }
+    td{
+	width: 5px;
+    }
+    </style>
+</head>
+<body>
+<!-- start navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Amran Bakery</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                <a class="nav-link" href="/web/bakery">Bakery<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/web/inventory">Inverntory</a>
+              </li>
+              <li class="nav-item">
+				<a class="nav-link" href="/web/products/add">Add product</a>              
+			</li>
+             </ul>
+            </div>
+        </nav>  
+        <!-- End navbar -->
+
+
+    <div class="fluid row">
+        <div class="col-lg-2 justify-content-center overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light scrollbar scrollbar-primary force-overflow" style="max-height: 84vh;">
+            <div class="col align-content-center">
+                <h5> Products Groups </h5>
+            <a href="/web/bakery">
+                <div class="col card align-content-center">
+                    <img id="image-popup" src="/web/public/images/all.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <div class="col">
+                        <p class="text-center">ALL Products </p>
+                    </div>
+                </div>
+                </a>
+
+                <a href="/web/products/getbytype/Bread">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/bread/Beard.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <div class="col">
+                      <p class="text-center">Bread </p>
+                    </div>
+                </div>
+                </a>
+
+            <a href="/web/products/getbytype/Pastry">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/pastry/pastry.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <div class="col">
+                      <p class="text-center">Pastry </p>
+                    </div>
+                </div>
+                </a>
+
+            <a href="/web/products/getbytype/Muffins">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/muffins/muffins.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <div class="col">
+                        <div class="col">
+                          <p class="text-center">Muffins </p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+
+            <a href="/web/products/getbytype/Cake">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/cake/cake.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle align-content-center" />
+                    <div class="col">
+                        <div class="col">
+                          <p class="text-center">Cake </p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6 overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light scrollbar scrollbar-primary force-overflow" style="max-height: 84vh;">
+            <h5 class="text-center"><%= title %>  Prodocts List </h5>
+<div class="row">
+            <% if (result.length >= 1) { %>
+			<% for( let index = 0; index < result.length; index++ ) { %>
+            <a data-toggle="modal" data-id="<%= result[index].id %>" title="Add this item" class="open-AddBookDialog btn btn-primary" href="#addBookDialog">
+
+                <div>
+                    <img id="image-popup" src="/web/<%= result[index].image %>" alt="" width="250" height="200" class="img-thumbnail img-fluid"  name="1" />
+                    <div class="col">
+                        <div class="col">
+                            <h6 class="text-center"><%= result[index].name %> </h6>
+                            <h6 class="text-center"><%= result[index].price %> SR/pc </h6>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                <% } %>
+			<% } else { %>
+                <div>
+                    <img id="image-popup" src="/web/public/images/all.jpg" alt="" width="250" height="200" class="img-thumbnail img-fluid"  name="2" />
+                    <div class="col">
+                        <div class="col">
+                            <h6 class="text-center">No Products </h6>
+                            <h6 class="text-center">None </h6>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-12 mt-5" >
+            <h5 class="text-center">Orderd List </h5>
+<div class="" style="max-height: 70vh; overflow: auto;">
+        <table class="table table-bordered table-striped">
+
+                    <thead >
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col" >Quantity Edit</th>
+                            <th scope="col">Delete</th>
+                            <th scope="col">Edit</th>                            
+                            <th scope="col">Cancel</th>                            
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% if (orders.length >= 1) { %>
+					 <% for( let index = 0; index < orders.length; index++ ) { %>
+                        <tr class="odd">
+                            <th scope="row" class="idRow" id="<%= orders[index].id %>"><%= index + 1 %> </th>
+                            <td scope="row"><%= orders[index].name %></td>
+                            <td scope="row"><%= orders[index].unit %></td>
+                            <td scope="row"><%= orders[index].price %></td>
+                            <td scope="row"><%= orders[index].quantity %></td>
+                            <td scope="row">
+                                <input type="text"  class="qua form-control" id="<%= orders[index].id %>">
+                            </td>
+                            <td scope="row"><a href="/web/delete/<%= orders[index].id %>" class="btn btn-danger remove" id="<%= index + 1 %>" >Delete</a></td>
+                            <td scope="row"><button  class="btn btn-primary edit deleteAction" id="<%= index + 1 %> " name="<%= orders[index].id %>" >Edit</button></td>
+                            <td scope="row"><button class="btn btn-warning text-white cancel" id="<%= index + 1 %>">Cancel</button></td>
+                            <td scope="row"><%= orders[index].total %></td>
+                            
+                        </tr>
+					<% } %>
+					<% } else { %>
+						<tr>
+                            <th scope="row">0</th>
+                            <td>No Orderes</td>
+                            <td>None</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>
+                                <input type="text" class="qua form-control " id="0">
+                            </td>
+                            <td><button class="btn btn-danger remove" id="0" >Delete</button></td>
+                            <td><button class="btn btn-primary edit" id="0" >Edit</button></td>
+                            <td><button class="btn btn-warning text-white cancel" id="0">Cancel</button></td>
+                            <td>0</td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="row">
+                 <div class="col-lg-12 ">
+                 <% if (orders.length >= 1) { %>
+
+                                      <h6 class="text-center mt-3 mb-3 "> Total : <%= orders[0].full_price %>  SR </h6><span class="editpr"></span> 
+
+                 <% } else { %>
+                                      <h6 class="text-center mt-3 mb-3 ">  <%= "No Orders" %> </h6><span class="editpr"></span> 
+                    <% } %>
+                </div>
+                
+        
+
+                <div class="col-lg-12 ">
+                <form action="/web/delete_all" method="get">
+                    <button  type="submit" class="btn  btn-primary btn-block checkout" value="CheckOut"> Check Out</button>
+                    </form>
+                </div>
+               </div>
+    </div>
+</div>
+
+<!--
+<div class="modal hide" id="addBookDialog">
+ <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Modal header</h3>
+  </div>
+    <div class="modal-body">
+        <p>some content</p>
+        <input type="hidden" name="productId" id="productId" value=""/>
+    </div>
+</div> -->
+
+<div class="modal hide" tabindex="-1" role="dialog" id="addBookDialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add To Order</h5>
+        <button type="button" data-dismiss="modal" class="close"  aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                    <div class="form-group">
+                        <input type="hidden" name="productId" id="productId" value=""/>
+                        <label>Quantity</label>
+                        <input type="number" class="form-control" name="quantity" id="quantity" value="" placeholder="quantity" required>
+                    </div>
+		              <button type="submit" onclick="send()">Send </button>
+            <!--</form> -->
+            <div id="target" class="target"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-secondary" >Close</button>
+      </div>
+    </div>
+  </div>
+      </div>
+  </div>
+
+
+
+<!-- start footer -->
+<footer class=" bg-dark text-white text-center mt-5" style="max-height: 10vh; ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4>Project Prepared by Abdullah Al-Omran</h4>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/web/public/js/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/web/public/js/popper.min.js"></script>
+    <script src="/web/public/js/bootstrap-4.4.1.js"></script>
+    <script type="text/javascript">
+    function send() {
+        var data = {
+            product: $("#productId").val(),
+            quantity:$("#quantity").val()
+        }
+$('#target').html('sending..');
+if($("#quantity").val() == '' || $("#quantity").val() == 0){
+    $('#target').html('You Must Enter A Quantity or dont make it 0');
+} else {
+        $.ajax({
+            url: '/web/new_product',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                $('#target').html(data);
+                if(data === "Added") window.location.href = "/web/bakery";
+            },
+            data: JSON.stringify(data)
+        });
+}
+
+    }
+</script>
+    <script>
+            var ctl = $(".remove");
+
+        $("body").on('click' ,".remove" , function() {
+                if($(".remove".length >0)) {
+                    $(this).parents("tr").remove();
+                }
+        
+          });
+        $("#myForm input").on("change" ,function() {
+            if($('input[active]:checked') == true ) {
+                console.log("12");
+            }
+        });
+          
+    $(document).on("click", ".open-AddBookDialog", function () {
+     var myBookId = $(this).data('id');
+     $(".modal-body #productId").val( myBookId );
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+    });
+
+
+$('.deleteAction').click(function () {
+    var $idRowTd = $(this).closest(".odd").find(".idRow");
+    var id = $idRowTd.attr("id");
+//
+    // use the element and id here
+            var data = {
+            product: $(this).closest(".odd").find(".idRow").attr('id'),
+            quantity:$(this).closest(".odd").find(".qua").val()
+        }
+
+        $.ajax({
+            url: '/web/edit',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                if(data === "Edited") window.location.href = "/web/bakery";
+            },
+            data: JSON.stringify(data)
+        });
+});
+
+// if($(".qua").val() == '' || $(".qua").val() == 0){
+// $(".qua").val('value must be written and not = 0')
+// } else {
+
+// }
+
+    
+    </script>
+    <script>
+        let image = Array.from( document.querySelectorAll("#image-popup")),
+            quat = Array.from( document.querySelectorAll(".qua")),
+            remove = Array.from( document.querySelectorAll(".remove")),
+            cancel = Array.from( document.querySelectorAll(".cancel")),
+             edit = Array.from( document.querySelectorAll(".edit")),
+             e = document.querySelector(".sel");
+
+             let changeSel =  function (a) {
+                    var x = (a.value || a.options[a.selectedIndex].value);
+                    if(x== 0) {
+
+                        for(let i=0 ; i < cancel.length ; i++) {
+                            if(cancel[i].getAttribute("id") == e.getAttribute("id")) {
+                                cancel[i].setAttribute("disabled" , true)
+                                remove[i].setAttribute("disabled" , true)
+                                edit[i].setAttribute("disabled" , true)
+                            }
+                        }
+                    
+                    }else if(x==1) {
+                           for(let i=0 ; i< cancel.length ; i++) {
+                            if(cancel[i].getAttribute("id") == e.getAttribute("id")) {
+                                cancel[i].removeAttribute("disabled");
+                                remove[i].removeAttribute("disabled");
+                                edit[i].removeAttribute("disabled");
+                            }
+                        }
+                    }
+                }
+
+
+            for(let i=0;i< cancel.length ; i++) {
+                cancel[i].onclick = function () {
+                    for(let j = 0 ; j< quat.length ;j++) {
+                        if(quat[j].getAttribute("id") == cancel[i].getAttribute("id"))
+                            quat[j].value = "0";
+                    }
+                }
+
+                }
+
+
+
+
+                
+                for(let i=0;i< edit.length ; i++) {
+                    edit[i].onclick = function () {
+                        for(let j = 0 ; j< quat.length ;j++) {
+                            if(quat[j].getAttribute("id") == edit[i].getAttribute("id"))
+                                quat[j].focus();
+                        }
+                    
+                }
+                }
+
+                
+
+                    
+                document.querySelector(".checkout").onclick = function() {
+                    for (var i = 0; i < quat.length; i++) {
+                        quat[i].value = "";
+                    }
+                }
+            
+        
+    </script>
+</body>
+</html>

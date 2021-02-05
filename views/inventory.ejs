@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>inventory</title>
+	 <!-- Bootstrap -->
+    <link href="/web/public/css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet"  href="/web/public/css/style.css">
+</head>
+<body>
+
+		<!-- start navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#">Amran Bakery</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">		  
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Inverntory</a>
+		      </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="/web/bakery">Bakery<span class="sr-only">(current)</span></a>
+              </li>
+		      <li class="nav-item">
+				<a class="nav-link" href="/web/products/add">Add product</a>              
+			</li>
+		     </ul>
+		    </div>
+		</nav>	
+		<!-- End navbar -->
+
+	<div class="inventory">
+		<div class="container">
+			<div class="section-title mt-5">
+				<h2>Inverntory</h2>
+				<% if (check) { %>
+				 <h3><%= check %></h3>
+				<% } %>
+			</div>
+			<div class="row d-flex justify-content-center  align-items-center">
+				<div class="col-12">
+					<table class="table table-bordered table-striped mb-0">
+	                    <thead>
+	                        <tr>
+	                            <th scope="col">Product Image</th>
+	                            <th scope="col">Product Name</th>
+	                            <th scope="col">sold Quantity</th>
+	                            <th scope="col">Availabel Quantitiy</th>
+								<th scope="col">Edit</th>
+								<th scope="col">Delete</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+						<% if (result.length >= 1) { %>
+							<% for( let index = 0; index < result.length; index++ ) { %>
+							<tr> 
+	                            <th scope="row">
+	                            	<img src="/web/<%= result[index].image  %>" alt="" width="150" height="100" class="img-flui" />
+	                            </th>
+	                            <td><%= result[index].name %></td>
+	                            <td><%= result[index].sold %></td>
+	                            <td><%= result[index].stok %></td>
+								<td><a href="/web/products/edit/<%= result[index].id %>" class="btn btn-dark">Edit</a></td>
+								<td><a href="/web/products/delete/<%= result[index].id %>" class="btn btn-dark">Delete</a></td>
+	                        </tr>
+							<% } %>
+						<%  } else { %>
+							<tr>
+	                            <th scope="row">
+	                            	Not Found
+	                            </th>
+	                            <td>No Products!</td>
+	                            <td>0</td>
+	                            <td>0</td>
+								<td><a type="button" href="#" class="btn btn-dark">Edit</a></td>
+								<td><a href="#" class="btn btn-dark">Delete</a></td>
+	                        </tr>
+
+						  <% } %>
+	                        
+	                    </tbody> 
+                	</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- start footer -->
+	<footer class=" bg-dark text-white text-center" style="max-height: 10vh;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h4>Project Prepared by Abdullah Al-Omran</h4>
+					
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/web/public/js/jquery-3.4.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/web/public/js/popper.min.js"></script>
+    <script src="/web/public/js/bootstrap-4.4.1.js"></script>
+</body>
+</html>

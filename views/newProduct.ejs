@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bakery | New Product</title>
+	 <!-- Bootstrap -->
+    <link href="/web/public/css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet"  href="/web/public/css/style.css"></head></head>
+<body>
+	<!-- start navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#">Amran Bakery</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item">
+		        <a class="nav-link" href="/web/inventory">Inverntory</a>
+		      </li>
+			  <li class="nav-item">
+                	<a class="nav-link" href="/web/bakery">Bakery<span class="sr-only"></span></a>
+              </li>
+			<li class="nav-item">
+				<a class="nav-link" href="/web/products/add">Add product</a>              
+			</li>
+		     </ul>
+		    </div>
+		</nav>	
+		<!-- End navbar -->
+
+		<!-- start add project -->
+		<div class="add_project">
+			<div class="container">
+				<div class="section-title mt-5">
+					<h2>Add Product</h2>
+				</div>
+				<div class="row d-flex justify-content-center align-items-center">
+					<div class="col-8 ">
+						
+					<form action="/web/products/new" method="post" enctype="multipart/form-data">
+						<div class="row">
+		                  <div class="col-md-6"> <!--Start col-md-6 -->
+		                      <div class="form-group">
+		                        <label id="product_name">Product Name</label>
+		                       	 <input type="text" class="form-control bg-input" id="product_name" name="name" placeholder="type the Project  name" required>
+		                      </div>
+		                  </div>  <!-- End col-md-6 -->
+
+		                  <div class="col-md-6"> <!--Start col-md-6 -->
+		                    <div class="form-group">
+		                      <label for="product_type">Product Type</label>
+		                      <select name="category" class="form-control select2" style="width: 100%;" required>
+		                        <option selected="selected" >Bread</option>
+		                        <option>Muffins</option>
+								<option>Cake</option>
+		                        <option>Pastry</option>
+		                      </select>
+		                    </div>
+		                  </div><!-- End col-md-6-->
+
+
+		                  <div class="col-md-6"> <!--Start col-md-6 -->
+		                    <div class="form-group">
+		                      <label>Unit</label>
+		                      <select name="unit" class="form-control select2" style="width: 100%;" required>
+		                        <option selected="selected" >Kilo</option>
+		                        <option>Berry</option>
+		                        <option>Refill</option>
+		                      </select>
+		                    </div>
+		                  </div><!-- End col-md-6-->
+
+		                   <div class="col-md-6"> <!--Start col-md-6 -->
+		                    <div class="form-group">
+		                      <label >Avialable Quantity</label>
+		                      <input type="text" class="form-control"  required name="stok" required>
+		                    </div>
+		                  </div><!-- End col-md-6-->
+
+		                     <div class="col-md-6"> <!--Start col-md-6 -->
+		                    <div class="form-group">
+		                      <label for="product_type">unit price</label>
+		                      <input type="text" class="form-control" name="price" id="product_type" placeholder="type the class title" required>
+		                    </div>
+		                  </div><!-- End col-md-6-->
+
+
+
+		                  
+		                  <div class="col-md-6"> <!--Start col-md-6 -->
+		                      <!-- Date -->
+		                      <div class="form-group">
+		                        <label> Produce date:</label>
+		                          <div class="input-group date" >
+		                              <input type="date" class="form-control datetimepicker-input" name="produce" required />
+		                              <div class="input-group-append" >
+		                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+		                              </div>
+		                          </div>
+		                      </div>
+		                     <!-- /.form group -->
+		                  </div><!-- End col-md-6-->
+
+		                    <div class="col-md-6"> <!--Start col-md-6 -->
+		                      <!-- Date -->
+		                      <div class="form-group">
+		                        <label> End date:</label>
+		                          <div class="input-group date" >
+		                              <input type="date" class="form-control datetimepicker-input" name="end" required />
+		                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker" >
+		                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+		                              </div>
+		                          </div>
+		                      </div>
+		                     <!-- /.form group -->
+		                  </div><!-- End col-md-6-->
+
+		                  <div class="col-12"> <!-- Start col-12 -->
+		                  <div class="form-group">
+		                    <label for="exampleInputFile">product image</label>
+		                    <div class="input-group">
+		                      <div class="custom-file">
+		                        <input type="file" class="custom-file-input" name="image" id="exampleInputFile">
+		                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  </div><!--End col-12-->
+		                  <!-- End Class form-->
+		                
+		                </div>
+		              <input type="submit" class="btn btn-block font-weight-bold text-white mb-5 mt-2 " style="background-color: orange">
+		              
+		             </form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- end add project -->
+
+
+
+	<!-- start footer -->
+	<footer class=" bg-dark text-white text-center" style="max-height: 10vh;">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h4>Project Prepared by Abdullah Al-Omran</h4>
+					
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/web/public/js/jquery-3.4.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/web/public/js/popper.min.js"></script>
+    <script src="/web/public/js/bootstrap-4.4.1.js"></script>
+</body>
+</html>
