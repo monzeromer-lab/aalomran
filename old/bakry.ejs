@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Order</title>
+    <title>Bakery</title>
 
     <!-- Bootstrap -->
     <link href="/web/public/css/bootstrap-4.4.1.css" rel="stylesheet">
@@ -21,22 +21,22 @@
 <body>
 <!-- start navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="/web">Palmera</a>
+          <a class="navbar-brand" href="#">Amran Bakery</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-		        <a class="nav-link" href="/web/inventory">Inventory</a>
-		      </li>
-			  <li class="nav-item">
-                <a class="nav-link" href="/web/bakery">Order<span class="sr-only">(current)</span></a>
+               <li class="nav-item active">
+                <a class="nav-link" href="/web/bakery">Bakery<span class="sr-only">(current)</span></a>
               </li>
-			<li class="nav-item" >
-                    <a class="nav-link" href="/web/products/add">Product Information</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/web/inventory">Inverntory</a>
+              </li>
+              <li class="nav-item">
+				<a class="nav-link" href="/web/products/add">Add product</a>              
+			</li>
              </ul>
             </div>
         </nav>  
@@ -55,22 +55,52 @@
                     </div>
                 </div>
                 </a>
-                <% for( let index = 0; index < categorys.length; index++ ) { %>
-                 <a href="/web/products/getbytype/<%= categorys[index].id %>">
+
+                <a href="/web/products/getbytype/Bread">
                 <div class="col card justify-content-center">
-                    <img id="image-popup" src="<%= categorys[index].image %>" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <img id="image-popup" src="/web/public/images/bread/Beard.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
                     <div class="col">
-                      <p class="text-center"><%= categorys[index].name %></p>
+                      <p class="text-center">Bread </p>
                     </div>
                 </div>
                 </a>
-                <% } %>
+
+            <a href="/web/products/getbytype/Pastry">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/pastry/pastry.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <div class="col">
+                      <p class="text-center">Pastry </p>
+                    </div>
+                </div>
+                </a>
+
+            <a href="/web/products/getbytype/Muffins">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/muffins/muffins.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <div class="col">
+                        <div class="col">
+                          <p class="text-center">Muffins </p>
+                        </div>
+                    </div>
+                </div>
+                </a>
+
+            <a href="/web/products/getbytype/Cake">
+                <div class="col card justify-content-center">
+                    <img id="image-popup" src="/web/public/images/cake/cake.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle align-content-center" />
+                    <div class="col">
+                        <div class="col">
+                          <p class="text-center">Cake </p>
+                        </div>
+                    </div>
+                </div>
+                </a>
 
             </div>
         </div>
 
         <div class="col-lg-6 overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light scrollbar scrollbar-primary force-overflow" style="max-height: 84vh;">
-            <h5 class="text-center"> Prodocts List </h5>
+            <h5 class="text-center"><%= title %>  Prodocts List </h5>
 <div class="row">
             <% if (result.length >= 1) { %>
 			<% for( let index = 0; index < result.length; index++ ) { %>
@@ -226,6 +256,18 @@
 
 
 
+<!-- start footer -->
+<footer class=" bg-dark text-white text-center mt-5" style="max-height: 10vh; ">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4>Project Prepared by Abdullah Al-Omran</h4>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end footer -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/web/public/js/jquery-3.4.1.min.js"></script>

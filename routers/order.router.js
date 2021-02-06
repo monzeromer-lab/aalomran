@@ -6,9 +6,11 @@ Order.use(express.json())
 
 Order.get('/bakery' , async (req , res)=>{
     const db = await newDB.connection()
+        let query = `SELECT * FROM category`
+        let categorys = await db.query(query);
     let result =  await db.query("SELECT * FROM product WHERE availability = 1")
     let order =  await db.query("SELECT order_list.id , order_list.quantity , order_list.total , product.name, product.unit , product.price , (SELECT SUM(total) FROM order_list) AS full_price FROM order_list INNER JOIN product ON order_list.product_id=product.id")
-    res.status(200).render('bakry' , {result : result , title : 'All' , orders : order})
+    res.status(200).render('bakry' , {result : result , categorys:categorys , title : 'All' , orders : order})
 })
 
 Order.post('/new_product' , async (req , res)=>{
