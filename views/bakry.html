@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -8,7 +8,8 @@
 
     <!-- Bootstrap -->
     <link href="/web/public/css/bootstrap-4.4.1.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/web/public/css/style.css" rel="stylesheet">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <style type="text/css">
     th{
 	width: 5px;
@@ -35,11 +36,12 @@
                 <a class="nav-link" href="/web/inventory">Inventory</a>
               </li>
                 <li class="nav-item dropdown" >
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Products
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/web/newProduct">Product Information</a>
+                        <a class="dropdown-item" href="/web/newProductType">New Product Type </a>
                         <a class="dropdown-item" href="/web/mangProduct">Manage Products</a>
                     </div>
                 </li>
@@ -55,7 +57,7 @@
                 <h5> Products Groups </h5>
             <a href="/web/bakery">
                 <div class="col card align-content-center">
-                    <img id="image-popup" src="/web/public/images/all.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <img id="image-popup" src="images/all.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle output" oncontextmenu />
                     <div class="col">
                         <p class="text-center">ALL Products </p>
                     </div>
@@ -64,16 +66,17 @@
 
                 <a href="/web/products/getbytype/Bread">
                 <div class="col card justify-content-center">
-                    <img id="image-popup" src="/web/public/images/bread/Beard.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <img id="image-popup" src="images/bread/Beard.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle output" id="output" />
                     <div class="col">
                       <p class="text-center">Bread </p>
+                    
                     </div>
                 </div>
                 </a>
 
             <a href="/web/products/getbytype/Pastry">
                 <div class="col card justify-content-center">
-                    <img id="image-popup" src="/web/public/images/pastry/pastry.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <img id="image-popup" src="images/pastry/pastry.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle output" />
                     <div class="col">
                       <p class="text-center">Pastry </p>
                     </div>
@@ -82,7 +85,7 @@
 
             <a href="/web/products/getbytype/Muffins">
                 <div class="col card justify-content-center">
-                    <img id="image-popup" src="/web/public/images/muffins/muffins.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle" />
+                    <img id="image-popup" src="images/muffins/muffins.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle output" />
                     <div class="col">
                         <div class="col">
                           <p class="text-center">Muffins </p>
@@ -93,7 +96,7 @@
 
             <a href="/web/products/getbytype/Cake">
                 <div class="col card justify-content-center">
-                    <img id="image-popup" src="/web/public/images/cake/cake.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle align-content-center" />
+                    <img id="image-popup" src="images/cake/cake.jpg" alt="" width="250" height="200" class="img-fluid rounded-circle align-content-center output" />
                     <div class="col">
                         <div class="col">
                           <p class="text-center">Cake </p>
@@ -125,7 +128,7 @@
                 <% } %>
 			<% } else { %>
                 <div>
-                    <img id="image-popup" src="/web/public/images/all.jpg" alt="" width="250" height="200" class="img-thumbnail img-fluid"  name="2" />
+                    <img id="image-popup" src="images/all.jpg" alt="" width="250" height="200" class="img-thumbnail img-fluid"  name="2" />
                     <div class="col">
                         <div class="col">
                             <h6 class="text-center">No Products </h6>
@@ -142,7 +145,7 @@
 
         <div class="col-lg-12 mt-5" >
             <h5 class="text-center">Orderd List </h5>
-<div class="" style="max-height: 70vh; overflow: auto;">
+        <div class="" style="max-height: 70vh; overflow: auto;">
         <table class="table table-bordered table-striped">
 
                     <thead >
@@ -261,7 +264,9 @@
   </div>
 
 
-
+      <label for="file" style="cursor: pointer;" class="menu">Edit</label>
+      <img src="" id="112">
+            <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;" class="form-control ">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/web/public/js/jquery-3.4.1.min.js"></script>
@@ -269,7 +274,7 @@
     <script src="/web/public/js/popper.min.js"></script>
     <script src="/web/public/js/bootstrap-4.4.1.js"></script>
     <script type="text/javascript">
-    function send() {
+     function send() {
         var data = {
             product: $("#productId").val(),
             quantity:$("#quantity").val()
@@ -411,8 +416,33 @@ $('.deleteAction').click(function () {
                         quat[i].value = "";
                     }
                 }
-            
-        
+
+                // Change image source function
+                let loadFile = (event) => {
+                        let imageg = document.querySelector('.src');
+                        imageg.src = URL.createObjectURL(event.target.files[0]);
+                        document.querySelector(".src").classList.remove("src")
+
+                    };
+            // Choosing the right element to target 
+                let clickable = Array.from(document.querySelectorAll(".output")),
+                     menu =      document.querySelector(".menu");
+                for(let i=0; i <= clickable.length; i++){
+                     clickable[i].oncontextmenu = function(e)  {
+                        console.log(e)
+                             e.preventDefault()
+                             menu.style.top = `${e.clientY}px`
+                             menu.style.left = `${e.clientX}px`
+                            menu.classList.add("show")
+                            this.classList.add("src")
+
+                     }
+                    document.body.onclick = function() {
+                        menu.classList.remove("show");
+                    }
+           
+                }
+
     </script>
 </body>
 </html>

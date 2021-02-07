@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bakery | Add New Product Type</title>
+	 <!-- Bootstrap -->
+    <link href="/web/public/css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link rel="stylesheet"  href="/web/public/css/style.css"></head></head>
+<body>
+	<!-- start navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#">Palmera</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+
+
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav mr-auto">
+		      <li class="nav-item">
+		        <a class="nav-link" href="/web/inventory">Inventory</a>
+		      </li>
+			  <li class="nav-item">
+                <a class="nav-link" href="/web/bakery">Order<span class="sr-only">(current)</span></a>
+              </li>
+			      <li class="nav-item dropdown active" >
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Products
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/web/newProduct">Product Information</a>
+                        <a class="dropdown-item" href="/web/newProductType">New Product Type </a>
+                        <a class="dropdown-item" href="/web/mangProduct">Manage Products</a>
+                    </div>
+                </li>
+		     </ul>
+		    </div>
+		</nav>	
+	<!-- End navbar -->
+
+
+		<!-- start add project -->
+		<div class="add_project">
+			<div class="container">
+				<div class="section-title mt-5">
+					<h2>Add new product</h2>
+				</div>
+				<div class="row d-flex justify-content-center align-items-center">
+					<div class="col-8 ">
+						
+					<form action="/web/products/new" method="post" enctype="multipart/form-data">
+						<div class="row">
+		                  <div class="col-md-6"> <!--Start col-md-6 -->
+		                      <div class="form-group">
+		                        <label id="product_name">Product type name</label>
+		                       	 <input type="text" class="form-control bg-input" id="product_name" name="name" placeholder="type the Product type name" required>
+		                      </div>
+		                  </div>  <!-- End col-md-6 -->
+
+		                  <!-- Delete OLd Product TYpe
+		                  <div class="col-md-6"> 
+		                    <div class="form-group">
+		                      <label for="product_type">Delete product type Type</label>
+		                      <select name="category" class="form-control select2" style="width: 100%;">
+		                        <option selected="selected" value="0">None</option>
+		                        <option value="1">Bread</optio>
+		                        <option value="2">Muffins</option>
+								<option value="3">Cake</option>
+		                        <option value="4">Pastry</option>
+		                      </select>
+		                    </div>
+		                  </div>
+
+		                  	IF YOU UNCOMMENT THIS CODE MAKE THE PRODUCT TYPE IMAGE CLASSS = "col-12"
+		                  < Delete OLd Product TYpe -->
+		                  <div class="col-md-6"> <!-- Start col-12 -->
+		                  <div class="form-group">
+		                    <label for="exampleInputFile">Product type image</label>
+		                    <div class="input-group">
+		                      <div class="custom-file">
+		                        <input type="file" class="custom-file-input" name="image" id="exampleInputFile" required>
+		                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  </div><!--End col-12-->
+		                  <!-- End Class form-->
+		                
+		                </div>
+		              <input type="submit" class="btn btn-block font-weight-bold text-white mb-5 mt-2 " style="background-color: orange">
+		              
+		             </form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- end add project -->
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/web/public/js/jquery-3.4.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/web/public/js/popper.min.js"></script>
+    <script src="/web/public/js/bootstrap-4.4.1.js"></script>
+</body>
+</html>
